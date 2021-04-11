@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NY Top stories</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script src="D:\zen\New York Top Stories\script.js"></script>
+    <script>
+        var h2 = document.createElement("h2")
+        h2.innerHTML = "Sports";
+        document.body.append(h2);
+        let url = "https://api.nytimes.com/svc/topstories/v2/sports.json?api-key=vLhrBHy32W8mPH1LMLtFPZUPJXbsF1nP";
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+
+                data.results.forEach((obj) => {
+
+                    var div2 = document.createElement("div");
+                    div2.setAttribute("class", "container-fluid");
+                    var div3 = document.createElement("div");
+                    div3.setAttribute("class", "row")
+                    var div4 = document.createElement("div");
+                    div4.setAttribute("class", "col-md-8")
+                    var h5 = document.createElement("h5");
+                    h5.innerHTML = obj.abstract;
+                    var p1 = document.createElement("p");
+                    p1.innerHTML = obj.byline;
+                    var p2 = document.createElement("p");
+                    p2.innerHTML = obj.created_date;
+                    var p3 = document.createElement("p");
+                    p3.innerHTML = obj.item_type;
+                    var p4 = document.createElement("p");
+                    p4.innerHTML = obj.section;
+                    var p5 = document.createElement("p");
+                    p5.innerHTML = obj.title;
+                    var a = document.createElement("a");
+                    a.setAttribute("href", "obj.short_url");
+                    a.innerHTML = "Read more";
+                    var div5 = document.createElement("div");
+                    div5.setAttribute("class", "col-md-4")
+                    var img = document.createElement("img");
+                    img.setAttribute("src", obj.multimedia[4].url);
+                    img.setAttribute("class", "img1");
+
+                    div4.append(h5, p1, p2, p3, p4, p5, a);
+                    div5.append(img);
+                    div3.append(div4, div5);
+                    div2.append(div3);
+                    document.body.append(div2);
+                });
+            });
+    </script>
+</body>
+
+</html>
